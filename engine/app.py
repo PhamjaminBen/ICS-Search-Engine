@@ -35,14 +35,14 @@ def get_user(term: str):
   for (url, score, pagerank) in intersect[:50]:
     title = id_dict[url].strip()
     # title = re.sub(r'\/.',"",title)
-    # print(title)
+    # print(title)cd
 
-    if len(title) > 200:
-      title = title[:200] + '...'
+    if len(title) > 65:
+      title = title[:65] + '...'
     result.append({"url": url, "title": title })
     pass
   
-  response = jsonify(result)
+  response = jsonify({"elapsed" : elapsed, "numResults": len(result), "results": result})
   return response, 200
 
 

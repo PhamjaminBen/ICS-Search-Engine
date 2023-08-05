@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
+	fetch("https://ics-search-engine.onrender.com/search/a");
 	const [searchText, changeSearchText] = useState("");
 	const [results, changeResults] = useState([{}]);
 
@@ -11,9 +12,11 @@ export default function Home() {
 		e.preventDefault();
 		const modified = searchText.replaceAll(" ", "-");
 		// changeSearchText((prev) => prev.replaceAll(" ", "-"));
-		const data = await fetch("http://127.0.0.1:5000/search/hello").catch(
-			(err) => console.log(err)
+		const fetchedData = await fetch(
+			`https://ics-search-engine.onrender.com/search/${modified}`
 		);
+		const data = await fetchedData.json();
+		changeResults(data);
 	};
 
 	return (
@@ -41,7 +44,7 @@ export default function Home() {
 				{results.length > 1 ? (
 					results.map((result) => {
 						return (
-							<a href={result.url}>
+							<a href={result.url} target='_blank'>
 								<div className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between'>
 									<h1 className='text-4xl font-bold'>{result.title}</h1>
 									<h1>{result.url}</h1>
