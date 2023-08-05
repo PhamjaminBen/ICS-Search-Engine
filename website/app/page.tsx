@@ -10,7 +10,7 @@ export default function Home() {
 	const [timeElapsed, changeTimeElapsed] = useState(0);
 	const [numResults, changeNumResults] = useState(0);
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const modified = searchText.replaceAll(" ", "-");
 		// changeSearchText((prev) => prev.replaceAll(" ", "-"));
