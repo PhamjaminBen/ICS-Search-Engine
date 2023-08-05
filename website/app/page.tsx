@@ -24,7 +24,7 @@ export default function Home() {
 	};
 
 	return (
-		<main className='flex min-h-screen flex-col items-center p-24 space-y-8'>
+		<main className='flex min-h-screen flex-col items-center p-12 md:p-24 space-y-12'>
 			<h1 className='text-6xl text-white font-bold text-center'>
 				UCI ICS Search Engine
 			</h1>
@@ -32,13 +32,13 @@ export default function Home() {
 				className='w-1/2 flex justify-center bg-zinc-700 rounded-full'
 				onSubmit={handleSubmit}
 			>
-				<FaSearch
+				{/* <FaSearch
 					style={{ color: "white", padding: "1.5rem" }}
 					className='w-20 h-20'
-				/>
+				/> */}
 				<input
 					type='text'
-					className='text-white p-5 grow rounded-full text-xl bg-zinc-700 outline-none'
+					className='text-white p-5 px-10 grow rounded-full text-xl bg-zinc-700 outline-none'
 					value={searchText}
 					onChange={(event) => changeSearchText(event.target.value)}
 				/>
@@ -47,17 +47,21 @@ export default function Home() {
 			<div className='text-white w-full flex-col'>
 				{results.length > 1 && (
 					<h1 className='m-auto grow max-w-4xl h-12'>
-						About {numResults} results ({timeElapsed}) seconds
+						About {numResults} results ({timeElapsed} seconds)
 					</h1>
 				)}
 				{results.length > 1 ? (
 					results.map((result) => {
 						return (
-							<a href={result.url} target='_blank'>
-								<div className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between'>
-									<h1 className='text-4xl font-bold'>{result.title}</h1>
-									<h1>{result.url}</h1>
-								</div>
+							<a
+								href={result.url}
+								target='_blank'
+								className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between hover:underline'
+							>
+								<h1 className='text-lg md:text-3xl font-bold'>
+									{result.title}
+								</h1>
+								<h1 className='overflow-hidden'>{result.url}</h1>
 							</a>
 						);
 					})
