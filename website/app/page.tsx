@@ -51,9 +51,10 @@ export default function Home() {
 					</h1>
 				)}
 				{results.length > 1 ? (
-					results.map((result) => {
+					results.map((result, idx) => {
 						return (
 							<a
+								key={idx}
 								href={result.url}
 								target='_blank'
 								className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between hover:underline'
