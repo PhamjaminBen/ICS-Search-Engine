@@ -1,0 +1,12 @@
+Analytics
+ - Number of indexed documents: 55393
+ - Number of unique tokens: 1136757
+ - Total size of inverse index: 158 MB (166,405,630 bytes)
+
+Additional Comments:
+ - At the moment we do not have any distinction for important words
+ - For each token, we store a list of length-2 lists,
+   these length 2 lists contain an unique ID corresponding to an URL
+   and the number of times the token appears on the URL
+ - All information is stored in a json file after initial indexing
+   We will be using these files when querying 

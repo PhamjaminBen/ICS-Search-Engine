@@ -1,0 +1,44 @@
+20 test queries:
+
+1. Uci engineering
+
+2. thornton ics46
+
+3. ICS 46
+
+4. how to log into uci account
+
+5. richard pattis retirement
+
+6. who is the head of UCI ICS?
+* first did not work because of the question mark, so we decided to tokenize the query the same way documents would be tokenized
+
+7. processing text
+
+8. CS 121 syllabus
+
+9. UCI honors application
+
+10. howard gillman
+
+11. richard pattis and alex thornton and shindler
+
+12. All clubs at UCI ICS
+
+13. the uci the uci the the the the the the the
+*performed very poorly as it was reopening and filtering through the same list multiple times, fixed by just adding a multiplier to the df_score of these since tf-idf is a sum
+
+14. uci burglary report
+
+15. How to sign up for classes at uci
+
+16. Top ten rated ics professors at uci
+
+17. CS upper division
+
+18. zotistics
+
+19. cs major requirements
+
+20. brandywine
+
