@@ -37,12 +37,12 @@ def get_user(term: str):
     # title = re.sub(r'\/.',"",title)
     # print(title)cd
 
-    if len(title) > 65:
-      title = title[:65] + '...'
+    if len(title) > 70:
+      title = title[:70] + '...'
     result.append({"url": url, "title": title })
     pass
   
-  response = jsonify({"elapsed" : elapsed, "numResults": len(result), "results": result})
+  response = jsonify({"elapsed" : round(elapsed,3), "numResults": len(result), "results": result})
   return response, 200
 
 

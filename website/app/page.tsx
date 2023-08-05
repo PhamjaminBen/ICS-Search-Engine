@@ -7,6 +7,8 @@ export default function Home() {
 	fetch("https://ics-search-engine.onrender.com/search/a");
 	const [searchText, changeSearchText] = useState("");
 	const [results, changeResults] = useState([{}]);
+	const [timeElapsed, changeTimeElapsed] = useState(0);
+	const [numResults, changeNumResults] = useState(0);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -16,11 +18,13 @@ export default function Home() {
 			`https://ics-search-engine.onrender.com/search/${modified}`
 		);
 		const data = await fetchedData.json();
-		changeResults(data);
+		changeResults(data.results);
+		changeTimeElapsed(data.elapsed);
+		changeNumResults(data.numResults);
 	};
 
 	return (
-		<main className='flex min-h-screen flex-col items-center p-24 space-y-16'>
+		<main className='flex min-h-screen flex-col items-center p-24 space-y-8'>
 			<h1 className='text-6xl text-white font-bold text-center'>
 				UCI ICS Search Engine
 			</h1>
@@ -41,6 +45,11 @@ export default function Home() {
 			</form>
 
 			<div className='text-white w-full flex-col'>
+				{results.length > 1 && (
+					<h1 className='m-auto grow max-w-4xl h-12'>
+						About {numResults} results ({timeElapsed}) seconds
+					</h1>
+				)}
 				{results.length > 1 ? (
 					results.map((result) => {
 						return (
