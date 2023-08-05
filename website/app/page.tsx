@@ -4,9 +4,13 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
+	interface Result {
+		url: string;
+		title: string;
+	}
 	fetch("https://ics-search-engine.onrender.com/search/a");
 	const [searchText, changeSearchText] = useState("");
-	const [results, changeResults] = useState([{}]);
+	const [results, changeResults] = useState<Result[]>([]);
 	const [timeElapsed, changeTimeElapsed] = useState(0);
 	const [numResults, changeNumResults] = useState(0);
 
@@ -45,13 +49,13 @@ export default function Home() {
 			</form>
 
 			<div className='text-white w-full flex-col'>
-				{results.length > 1 && (
+				{results.length > 0 && (
 					<h1 className='m-auto grow max-w-4xl h-12'>
 						About {numResults} results ({timeElapsed} seconds)
 					</h1>
 				)}
-				{results.length > 1 ? (
-					results.map((result, idx) => {
+				{results.length > 0 ? (
+					results.map((result: Result, idx) => {
 						return (
 							<a
 								key={idx}
