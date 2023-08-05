@@ -13,11 +13,6 @@ file_dict = dict()
 
 cached_terms = dict()
 
-#prepare files for reading
-for char in ALPHANUMS:
-  for char2 in '_' + ALPHANUMS:
-    f = open(f'logs/index_{char+char2}.json','r')
-    file_dict[char+char2] = f
 
 
 def accumulateScores(list1: list, list2: list) -> list:
@@ -46,6 +41,13 @@ def accumulateScores(list1: list, list2: list) -> list:
 
 def Search(query) -> list:
   '''search function employing tf-idf scoring'''
+
+  #prepare files for reading
+  for char in ALPHANUMS:
+    for char2 in '_' + ALPHANUMS:
+      f = open(f'logs/index_{char+char2}.json','r')
+      file_dict[char+char2] = f
+
   wordLists = list()
 
   queryWordCounts = defaultdict(int)
@@ -108,6 +110,9 @@ def Search(query) -> list:
     wordLists.pop(1)
 
   if not wordLists: return []
+
+  for x in file_dict:
+    file_dict[x].close()
   return wordLists[0]
 
 
