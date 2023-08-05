@@ -5,14 +5,15 @@ import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
 	const [searchText, changeSearchText] = useState("");
-	const [results, changeResults] = useState([
-		{ key: "bruh", url: "https://www.google.com/", title: "google" },
-		{ key: "bruh2", url: "https://www.google.com/", title: "google" },
-	]);
+	const [results, changeResults] = useState([{}]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(searchText);
+		const modified = searchText.replaceAll(" ", "-");
+		// changeSearchText((prev) => prev.replaceAll(" ", "-"));
+		const data = await fetch("http://127.0.0.1:5000/search/hello").catch(
+			(err) => console.log(err)
+		);
 	};
 
 	return (
@@ -37,16 +38,20 @@ export default function Home() {
 			</form>
 
 			<div className='text-white w-full flex-col'>
-				{results.map((result) => {
-					return (
-						<a href={result.url}>
-							<div className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between'>
-								<h1 className='text-4xl font-bold'>{result.title}</h1>
-								<h1>{result.url}</h1>
-							</div>
-						</a>
-					);
-				})}
+				{results.length > 1 ? (
+					results.map((result) => {
+						return (
+							<a href={result.url}>
+								<div className=' m-auto grow max-w-4xl h-36 bg-zinc-600 rounded-lg text-left px-5 py-4 hover:shadow-lg mb-5 flex flex-col justify-between'>
+									<h1 className='text-4xl font-bold'>{result.title}</h1>
+									<h1>{result.url}</h1>
+								</div>
+							</a>
+						);
+					})
+				) : (
+					<></>
+				)}
 			</div>
 		</main>
 	);
