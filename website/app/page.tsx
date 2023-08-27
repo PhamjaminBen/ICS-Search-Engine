@@ -68,6 +68,10 @@ export default function Home() {
 							borderColor='#FFFFFF'
 							barColor='#FFF'
 						/>
+						<p className='text-center text-slate-400'>
+							Loading may be slowed down on first search, as the backend host
+							takes time to spin up.
+						</p>
 					</>
 				)}
 
